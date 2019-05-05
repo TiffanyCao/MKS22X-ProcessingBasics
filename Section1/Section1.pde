@@ -12,6 +12,7 @@ class Visualizer {
   float [] speeds;
   int num;
   int width, height;
+  
   Visualizer(float x, float y) {
     this.x = x;
     this.y = y;
@@ -83,19 +84,22 @@ class Visualizer {
     //???WRITE THIS METHOD FIRST!!!
     for(int i = 0; i < values.length; i++){ //looping through array
       if(values[i] < 0){ //if value is negative
-        //fill(255, 165-(Math.abs(values[i]) * (165/MAX_VALUE)), 0);
-        float g = (MAX_VALUE + values[i]) * (255/MAX_VALUE);// * (165/MAX_VALUE));
+        float g = (MAX_VALUE + values[i]) * (255/MAX_VALUE); //adjust green value
         fill(255, g, 0);
-          //fill(255, 165-(Math.abs(values[i]) * (165/(height/2))), 0);
-        //}else fill(255, values[i]* (165/MAX_VALUE), 0);
         rect(x+(i*(width/values.length)), y+(height/2)+(Math.abs(values[i])), width/values.length, values[i]);
+      
+        //fill(255, 165-(Math.abs(values[i]) * (165/MAX_VALUE)), 0);
+        //fill(255, 165-(Math.abs(values[i]) * (165/(height/2))), 0);
+        //}else fill(255, values[i]* (165/MAX_VALUE), 0);
+        
       }else{ //if value is positive
+        float r = (MAX_VALUE - values[i]) * (255/(MAX_VALUE/2)); //adjust red value
+        fill(r, 255, 0);
+        rect(x+(i*(width/values.length)), y+((height/2)-values[i]), width/values.length, values[i]);
+        
         /*if(values[i] < (MAX_VALUE / 2)) fill(255-(values[i] * (255/height)), 255, 0);
         else fill(255-(values[i]*(255/height/2)), 255, 0);
         */
-        if(values[i] < (MAX_VALUE / 2)) fill(255, 255, 0);
-        else fill(0, 255, 0);
-        rect(x+(i*(width/values.length)), y+((height/2)-values[i]), width/values.length, values[i]);
       }
     }
    
@@ -121,7 +125,7 @@ class Visualizer {
 
 void setup() {
   size(600, 500);
-  v = new Visualizer(20, 20, 40, 400, 400);
+  v = new Visualizer(20, 20, 40, 400, 200);
 }
 void draw() {
   background(255);
