@@ -14,17 +14,40 @@ void setup() {
   2 = each of the 3 triangles will be cut into 3 triangles.
   etc.
 */
+int start = 0;
 void gasket(int levels, float v1x, float v1y, float v2x, float v2y, float v3x, float v3y) {
     //YOU WRITE THIS METHOD!
+    /*if(start == 0){
+      fill(255, 0, 0);
+      start++;
+    }else fill(255, 255, 255);
+    triangle(v1x, v1y, v2x, v2y, v3x, v3y);
+    if(levels > 0){
+      gasket(levels-1, (v1x+v2x)/2, (v1y+v2y)/2, (v1x+v3x)/2, (v1y+v3y)/2, (v2x+v3x)/2, (v2y+v3y)/2);
+    }
+    */
+    gasketH(levels-levels, v1x, v1y, v2x, v2y, v3x, v3y);
 }
 
+
+void gasketH(int level, float v1x, float v1y, float v2x, float v2y, float v3x, float v3y){
+  if(level == 0){
+    fill(255, 0, 0);
+    triangle(v1x, v1y, v2x, v2y, v3x, v3y);
+  }
+  if(level < levels){
+    fill(255, 255, 255);
+    triangle((v1x+v2x)/2, (v1y+v2y)/2, (v1x+v3x)/2, (v1y+v3y)/2, (v2x+v3x)/2, (v2y+v3y)/2);
+    
+  }
+}
 void draw() { 
   background(50);  
   
   fill(255);
   text("Click the mouse to increase levels, press a key to decrease levles",20,20);
 
-  gasket(levels,0, height-10, width, height-10, width/2, 10);
+  gasket(2,0, height-10, width, height-10, width/2, 10);
 
  //koch(levels,width-10, height/2,10, height/3 ); 
  //other fractal you can do! This requires a bit more math, or you can look up the coordinates.
