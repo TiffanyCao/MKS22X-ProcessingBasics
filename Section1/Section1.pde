@@ -39,28 +39,21 @@ class Visualizer {
     //Positive values are green and go above the line.
 
     //???WRITE THIS METHOD FIRST!!!
-    //THESE ARE WRONG: They just illustrate how they could look
-    for(int i = 0; i < values.length; i++){
-      if(values[i] < 0){
-        if(values[i] >= -50){
-          fill(255, 165, 0);
-        }else fill(255, 0, 0);
+    for(int i = 0; i < values.length; i++){ //looping through array
+      if(values[i] < 0){ //if value is negative
+        if(values[i] >= -50){ //if value is greater than -50
+          fill(255, 165, 0); //orange
+        }else fill(255, 0, 0); //red
         //if(values[i] >= -50) fill(255, Math.abs(values[i])*3.3, 0);
         //else fill(255, 0, 0);
         rect(x+(i*(400/values.length)), y+100+(Math.abs(values[i])), 400/values.length, values[i]);
-      }else{
-        if(values[i] < 50) fill(255, 255, 0);
-        else fill(0, 255, 0);
+      }else{ //if value is positive
+        if(values[i] < 50) fill(255, 255, 0); //if value is less than 50, yellow
+        else fill(0, 255, 0); //green
         rect(x+(i*(400/values.length)), y+(100-values[i]), 400/values.length, values[i]);
       }
     }
-    /*fill(255, 0, 0);
-    rect(x+40, y+100, 60, 50);
-    fill(0, 255, 0);
-    rect(x+120, y+50, 60, 50);
-    */
-    
-
+   
 
     //Width of the visualizer is 400!
 
@@ -68,10 +61,10 @@ class Visualizer {
   }
   void update() {
     //???WRITE THIS METHOD SECOND!!!
-    for (int i = 0; i < values.length; i++) {
+    for (int i = 0; i < values.length; i++) { //loop through array
       values[i] += speeds[i]; //the speed updates the values. Do not touch this.
       //??? keep them values between max/min value so they stay in the box.
-      if(values[i] >= MAX_VALUE || values[i] <= MIN_VALUE){
+      if(values[i] >= MAX_VALUE || values[i] <= MIN_VALUE){ //if the value reaches min or max, reverse the speeds
         speeds[i] = -speeds[i];
       }
       //??? reverse the speeds so the bar oscillates up/down when it reaches max/min
