@@ -35,11 +35,9 @@ void gasketH(int atLevel, int levels, float v1x, float v1y, float v2x, float v2y
   if(atLevel < levels){ //counting the levels
     fill(255, 255, 255); //white
     triangle((v1x+v2x)/2, (v1y+v2y)/2, (v1x+v3x)/2, (v1y+v3y)/2, (v2x+v3x)/2, (v2y+v3y)/2); //drawing the middle white triangle
-    if((atLevel + 1) != levels){ //checking
-      gasketH(atLevel + 1, levels, v1x, v1y, (v1x+v2x)/2, (v1y+v2y)/2, (v1x+v3x)/2, (v1y+v3y)/2); //focusing on lower right trianlge
-      gasketH(atLevel + 1, levels, v2x, v2y, (v1x+v2x)/2, (v1y+v2y)/2, (v2x+v3x)/2, (v2y+v3y)/2); //focusing on lower left triangle
-      gasketH(atLevel + 1, levels, v3x, v3y, (v1x+v3x)/2, (v1y+v3y)/2, (v2x+v3x)/2, (v2y+v3y)/2); //focusing on top triangle
-    }
+    gasketH(atLevel + 1, levels, v1x, v1y, (v1x+v2x)/2, (v1y+v2y)/2, (v1x+v3x)/2, (v1y+v3y)/2); //focusing on lower right trianlge
+    gasketH(atLevel + 1, levels, v2x, v2y, (v1x+v2x)/2, (v1y+v2y)/2, (v2x+v3x)/2, (v2y+v3y)/2); //focusing on lower left triangle
+    gasketH(atLevel + 1, levels, v3x, v3y, (v1x+v3x)/2, (v1y+v3y)/2, (v2x+v3x)/2, (v2y+v3y)/2); //focusing on top triangle
   }
 }
 void draw() { 
