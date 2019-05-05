@@ -30,6 +30,8 @@ class Visualizer {
     this.y = y;
     this.width = width;
     this.height = height;
+    MAX_VALUE = height/2;
+    MIN_VALUE = -(height/2);
     values = new float[num];
     speeds = new float[num];
     for (int i = 0; i < values.length; i++){
@@ -43,12 +45,12 @@ class Visualizer {
     //You can assume 10, but it would be even better 
     //if you could modify it to be larger increments.
     fill(255);
-    rect(x, y, 400, 200);
+    rect(x, y, width, height);
     //This is a 200x400 box.
     //The width of the visualizer is 400! This rect is the border
 
     //the line is the 0 y-value, the top is 100, the bottom is -100
-    line(x, y+100, x+400, y+100);
+    line(x, y+(height/2), x+width, y+(height/2));
 
     //You need to use a loop. You need to make the HEIGHT of the bars 
     //the values in the array.
@@ -58,21 +60,21 @@ class Visualizer {
     //???WRITE THIS METHOD FIRST!!!
     for(int i = 0; i < values.length; i++){ //looping through array
       if(values[i] < 0){ //if value is negative
-        fill(255, 165-(Math.abs(values[i]) * 1.6), 0);
+        fill(255, 165-(Math.abs(values[i]) * (165/MAX_VALUE)), 0);
         /*if(values[i] >= -50){ //if value is greater than -50
           fill(255, 165, 0); //orange
         }else fill(255, 0, 0); //red
         */
         //if(values[i] >= -50) fill(255, Math.abs(values[i])*3.3, 0);
         //else fill(255, 0, 0);
-        rect(x+(i*(400/values.length)), y+100+(Math.abs(values[i])), 400/values.length, values[i]);
+        rect(x+(i*(width/values.length)), y+(height/2)+(Math.abs(values[i])), width/values.length, values[i]);
       }else{ //if value is positive
         /*if(values[i] < 50) fill(255, 255, 0); //if value is less than 50, yellow
         else fill(0, 255, 0); //green
         */
         if(values[i] < 50) fill(255-(values[i] * 1.5), 255, 0);
         else fill(255-(values[i]*2.55), 255, 0);
-        rect(x+(i*(400/values.length)), y+(100-values[i]), 400/values.length, values[i]);
+        rect(x+(i*(width/values.length)), y+((height/2)-values[i]), width/values.length, values[i]);
       }
     }
    
@@ -98,7 +100,7 @@ class Visualizer {
 
 void setup() {
   size(600, 500);
-  v = new Visualizer(20, 20, 20);
+  v = new Visualizer(20, 20, 40, 400, 400);
 }
 void draw() {
   background(255);
