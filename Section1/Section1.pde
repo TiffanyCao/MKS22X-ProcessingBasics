@@ -41,15 +41,20 @@ class Visualizer {
     //???WRITE THIS METHOD FIRST!!!
     for(int i = 0; i < values.length; i++){ //looping through array
       if(values[i] < 0){ //if value is negative
-        if(values[i] >= -50){ //if value is greater than -50
+        fill(255, 165-(Math.abs(values[i]) * 1.6), 0);
+        /*if(values[i] >= -50){ //if value is greater than -50
           fill(255, 165, 0); //orange
         }else fill(255, 0, 0); //red
+        */
         //if(values[i] >= -50) fill(255, Math.abs(values[i])*3.3, 0);
         //else fill(255, 0, 0);
         rect(x+(i*(400/values.length)), y+100+(Math.abs(values[i])), 400/values.length, values[i]);
       }else{ //if value is positive
-        if(values[i] < 50) fill(255, 255, 0); //if value is less than 50, yellow
+        /*if(values[i] < 50) fill(255, 255, 0); //if value is less than 50, yellow
         else fill(0, 255, 0); //green
+        */
+        if(values[i] < 50) fill(255-(values[i] * 1.5), 255, 0);
+        else fill(255-(values[i]*2.55), 255, 0);
         rect(x+(i*(400/values.length)), y+(100-values[i]), 400/values.length, values[i]);
       }
     }
